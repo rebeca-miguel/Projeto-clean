@@ -6,4 +6,14 @@ import { ListAllBooksUseCase } from '../../application/use-cases/list-all-books-
 
 export function configureDependencies() {
  //seu codigo aqui
+
+ const bookRepository = new Repository();
+ const idGenerator = new IdentifierGenerator();
+ const createBookUseCase = new CreateBookUseCase(bookRepository, idGenerator);
+ const listAllBooksUseCase = new ListAllBooksUseCase(bookRepository);
+ const bookController = new BookController(createBookUseCase, listAllBooksUseCase);
+
+ return {
+    bookController
+ }
 } 
