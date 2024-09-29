@@ -1,3 +1,5 @@
+import { Book } from '../../domain/book';
+
 import { BookRepository } from '../repositories/book-repository';
 
 export class ListAllBooksUseCase {
@@ -6,8 +8,8 @@ export class ListAllBooksUseCase {
     private bookRepository: BookRepository
   ) {}
 
-  execute() {
-    const books = this.bookRepository.findAll();
-    return books
+  async execute(): Promise<Array<Book>> {
+    return await this.bookRepository.findAll();
+    
   }
 }

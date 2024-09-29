@@ -1,0 +1,18 @@
+//conectar com a string que possui senha  e user lá do cluster do mongodb
+import dotenv from 'dotenv'
+
+dotenv.config();
+import mongoose from "mongoose";
+//dotenv.config();
+
+export const connectDB = async () => {
+    try {
+
+        await mongoose.connect(process.env.MONGODB_URI as string)
+
+        console.log('MongoDb conectado com sucesso!')
+    }   catch (error) {
+        console.log('Erro ao connectar no MongoDB', error);
+
+    }
+}
