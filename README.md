@@ -79,9 +79,28 @@ importei Repository chamando o **database/mongo-db/repository;
 ### Testando no Insomnia: 
 
 POST /books: Para adicionar um novo livro.
+![image](https://github.com/user-attachments/assets/5b22f155-677c-42fe-877f-1c8b312809fb)
+
 
 GET /books: Para listar todos os livros.
 
+![image](https://github.com/user-attachments/assets/822e4840-653b-4fc5-b353-3143a843dacd)
+
+
 PATCH /books/:id: Para atualizar um livro pelo ID.
 
+![image](https://github.com/user-attachments/assets/5073448d-cc55-4e42-8578-88750f9e386b)
+
+
 DELETE /books/:id: Para deletar um livro pelo ID.
+
+![image](https://github.com/user-attachments/assets/1dde0b54-d404-4e48-a7ee-e58e98c8bcb2)
+
+### Banco de dados MongoDB
+
+![image](https://github.com/user-attachments/assets/413b945f-f822-4a8b-8251-ed3c16c0761c)
+
+
+
+
+
