@@ -85,3 +85,8 @@ GET /books: Para listar todos os livros.
 PATCH /books/:id: Para atualizar um livro pelo ID.
 
 DELETE /books/:id: Para deletar um livro pelo ID.
+
+// Os três  A
+//Arrange = setup
+// Act = execute
+// Assert = verify
