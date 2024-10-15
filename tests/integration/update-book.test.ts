@@ -33,7 +33,7 @@ describe("Update Book", () => {
     expect(updateResponse.status).toBe(200);
     expect(updateResponse.body).toMatchObject({
       title: "The Pragmatic Programmer (Updated)",
-      author: "Andrew Hunt", // Se o autor não for atualizado, ainda deve estar presente.
+      author: "Andrew Hunt", 
     });
 
     const checkResponse = await request.get(`/books/${bookId}`);
@@ -43,7 +43,7 @@ describe("Update Book", () => {
     });
   });
   
-  // O teste de erro pode ser mantido como está
+  
 });
     
     
