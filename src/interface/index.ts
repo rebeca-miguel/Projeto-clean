@@ -2,7 +2,7 @@ import express from 'express';
 import { configureDependencies } from '../infrastructure/utils/config';
 import {connectDB} from '../infrastructure/database/mongo-db/conection'
 
-export const app = express();
+const app = express();
 connectDB();
 app.use(express.json());
 
@@ -23,5 +23,7 @@ if (require.main === module) {
   const PORT = 3333;
   app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
-  })
+  });
 }
+
+export default app;

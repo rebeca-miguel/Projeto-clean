@@ -36,8 +36,16 @@ export class BookController {
     private deleteBooksUseCase: DeleteBookUseCase
   ){}
   //seu codigo aqui
-  create(req: Request, res: Response) {
+  async create(req: Request, res: Response) {
     const params: Book = req.body;
+    if(
+      params.title === "" ||
+       params.author === "" ||
+        params.isbn === "" || 
+        !params.title || !params.author ||!params.isbn 
+    ) {
+      return res.status(400).json({ message: "Campos litle e author são obrigatorios" });
+    }
     const book = this.createBookUseCase.execute(params);
     res.status(201).json(book);
   }

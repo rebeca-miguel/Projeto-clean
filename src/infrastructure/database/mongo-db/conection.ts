@@ -15,4 +15,4 @@ export const connectDB = async () => {
         console.log('Erro ao connectar no MongoDB', error);
 
     }
-}
+};
