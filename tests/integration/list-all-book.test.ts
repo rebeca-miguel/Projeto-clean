@@ -1,12 +1,14 @@
-
+import { Repository } from "../../src/infrastructure/database/mongo-db/repository";
 import supertest from "supertest";
 import app from "../../src/interface"; 
 import mongoose from "mongoose";
+import { randomUUID } from "crypto";
 
 
 const request = supertest(app);
+const bookRepository = new Repository();
 
-describe("BookE2E", () => {
+describe("ListAllBooks", () => {
 
   beforeEach(async () => {
     await mongoose.connect(process.env.MONGODB_URI as string);
@@ -18,50 +20,52 @@ describe("BookE2E", () => {
   });
 
 
-  describe("List Books", () => {
-    it("should list all books", async () => {
-      await request.post("/books").send({
+  it("should return an empty array when there are no books", async () => {
+    const response = await request.get("/books");
+
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject([]);
+  });
+
+    it("should return a list with all books registred", async () => {
+
+      const mockBooks = [
+        {
+
         title: "The Pragmatic Programmer",
         author: "Andrew Hunt",
         isbn: "978-0201616224",
         publisher: "Addison-Wesley",
         category: "Programming",
         status: "read",
-      });
 
-      await request.post("/books").send({
-        title: "Clean Code",
-        author: "Robert C. Martin",
+        },
+
+        {
+
+        title: "The Pragmatic Programmer",
+        author: "Andrew Hunt",
         isbn: "978-0201616224",
-        publisher: "Prentice Hall",
+        publisher: "Addison-Wesley",
         category: "Programming",
         status: "read",
-      });
+        },
+      ];
+
+      for (const book of mockBooks) {
+        await request.post("/books").send(book);
+      }
+
 
       const response = await request.get("/books");
 
       expect(response.status).toBe(200);
-      expect(response.body).toMatchObject(2);
-      expect(response.body).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            title: "The Pragmatic Programmer",
-            author: "Andrew Hunt",
-          }),
-          
-        ])
-      );
-    });
-
-    it("should return an empty array when there are no books", async () => {
-      const response = await request.get("/books");
-
-      expect(response.status).toBe(200);
-      expect(response.body).toMatchObject([]);
+      expect(response.body).toMatchObject(mockBooks);
+      
     });
   });
 
-})
+
   
 
 

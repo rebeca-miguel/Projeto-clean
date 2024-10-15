@@ -4,9 +4,8 @@ import mongoose from "mongoose";
 
 const request = supertest(app);
 
-describe("BookE2E", () => {
+describe("CreateBookE2E", () => {
     beforeEach(async () => {
-        console.log('MongoDB URI:', process.env.MONGODB_URI); 
         await mongoose.connect(process.env.MONGODB_URI as string);
       });
     
@@ -15,7 +14,7 @@ describe("BookE2E", () => {
         await mongoose.connection.close();
       });
     
-      describe("Create Book", () => {
+      
         it("should create a book", async () => {
           const response = await request.post("/books").send({
             title: "The Pragmatic Programmer",
